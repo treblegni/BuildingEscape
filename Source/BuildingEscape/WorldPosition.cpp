@@ -20,22 +20,23 @@ void UWorldPosition::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FString Log = TEXT("Hello");
-	//Assignment is reference of Log.
+	FString Log;
+	FString ObjectPosition = GetOwner() -> GetActorLocation().ToString();
+
+	//Pointer Assignments - Ampersand is used to retrieve reference of variable
 	FString* PrtLog = &Log;
 
-	//Requires assignment to remove errors
+	//You can access members of FString 
 	//Log.Len();
 
-	//Dereference pointer to access members, use normal dot notation otherwise
-	PrtLog -> Len();
-
+	//Dereference pointer to access the same members, use normal dot notation otherwise
+	// PrtLog -> Len();
 
 	//here start is used to overload Log and perform the function
 	// UE_LOG(LogTemp,Warning,TEXT("%s"),*Log);
 
-	//Deference pointer first then use overload * for this function to work
-	UE_LOG(LogTemp,Warning,TEXT("%s"),**PrtLog);
+	//* is need for this function to work
+	UE_LOG(LogTemp,Warning,TEXT("%s"),*ObjectPosition);
 
 	//Getting Owner (Actor) of component - returns a pointer
 	//Needs GameFramework/Actor.h
